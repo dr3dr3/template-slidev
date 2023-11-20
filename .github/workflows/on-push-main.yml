@@ -1,0 +1,26 @@
+name: ON-PUSH-MAIN
+run-name: Continuous Integration on Merge to Trunk
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.github/**'
+
+jobs:
+
+  continuous-integration:
+    name: CI on Main
+    uses: ${{ vars.REPO_PIPELINE }}/.github/workflows/continuous-integration.yml@main
+    with: 
+      feature: ${{ github.event.head_commit.message }}
+      target-ref: ${{ github.sha }}
+      solution: ${{ vars.SOLUTION }}
+      deploy-ci: ${{ vars.DEPLOY_CI }}
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      pages: write
+      id-token: write
+    secrets: inherit
