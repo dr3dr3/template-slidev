@@ -17,7 +17,7 @@ jobs:
 
   continuous-integration:
     name: CI on Main
-    uses: dr3dr3/template-pipeline/.github/workflows/continuous-integration.yml@main
+    uses: dr3dr3/temp-pipeline/.github/workflows/continuous-integration.yml@main
     with: 
       feature: ${{ github.event.head_commit.message }}
       target-ref: ${{ github.sha }}
