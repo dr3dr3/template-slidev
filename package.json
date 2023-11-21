@@ -3,9 +3,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build --out _site",
+    "build": "slidev build --out _site --base /",
     "lint": "echo 'No linting'",
     "test": "echo 'No testing'",
+    "check-links": "npx linkinator '_site/**/*.html' --config linkinator.config.json",
     "start": "slidev --open",
     "export": "slidev export"
   },
@@ -13,5 +14,8 @@
     "@slidev/cli": "^0.44.0",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest"
+  },
+  "devDependencies": {
+    "linkinator": "^6.0.1"
   }
 }
