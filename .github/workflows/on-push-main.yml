@@ -1,26 +1,32 @@
 name: ON-PUSH-MAIN
-run-name: Continuous Integration on Merge to Trunk
+run-name: Continuous Integration ( ${{ github.event_name }} run by ${{ github.actor }} )
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths-ignore:
       - '.github/**'
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
 
   continuous-integration:
     name: CI on Main
-    uses: ${{ vars.REPO_PIPELINE }}/.github/workflows/continuous-integration.yml@main
+    uses: dr3dr3/template-pipeline/.github/workflows/continuous-integration.yml@main
     with: 
       feature: ${{ github.event.head_commit.message }}
       target-ref: ${{ github.sha }}
       solution: ${{ vars.SOLUTION }}
       deploy-ci: ${{ vars.DEPLOY_CI }}
+      repo-stage: ${{ vars.REPO_STAGE }}
+      check-links: ${{ vars.CHECK_LINKS }}
     permissions:
       contents: write
-      pull-requests: write
-      issues: write
       pages: write
       id-token: write
     secrets: inherit
