@@ -17,13 +17,13 @@ jobs:
 
   continuous-integration:
     name: CI on Main
-    uses: dr3dr3/temp-pipeline/.github/workflows/continuous-integration.yml@main
+    uses: dr3dr3/template-pipeline/.github/workflows/continuous-integration.yml@main
     if: ${{ github.event.head_commit.message != 'Initial commit' }}
     with: 
       feature: ${{ github.event.head_commit.message }}
       target-ref: ${{ github.sha }}
       solution: ${{ vars.SOLUTION }}
-      deploy-ci: ${{ vars.DEPLOY_CI }}
+      deploy-to: ${{ vars.DEPLOY_CI }}
       repo-stage: ${{ vars.REPO_STAGE }}
       check-links: ${{ vars.CHECK_LINKS }}
     permissions:
